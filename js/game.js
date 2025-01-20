@@ -8,7 +8,9 @@ export class Game {
         }
     }
     #gameStatus = GameStatuses.PENDING
-    #googlePosition = null
+    #googlePosition = {
+        x:0,y:0
+    }
     set status(status) {
         this.#gameStatus = status
     }
@@ -23,7 +25,7 @@ export class Game {
     }
     start() {
         this.#googlePosition={
-
+            x:0,y:0
         }
         this.#gameStatus = GameStatuses.IN_PROGRESS
     }
