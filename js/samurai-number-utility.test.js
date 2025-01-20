@@ -44,6 +44,12 @@ describe('SamuraiNumberUtility', () => {
         const randomValue = samuraiUtility.getRandomInteger(0, 1);
         expect(randomValue).toBe(0);  // Since the range is [0, 1), the only possible value is 0
     });
+    test('should return the correct result when the range is 5 to 6', () => {
+            const from = 5;
+            const to = 6;
+        const randomValue = samuraiUtility.getRandomInteger(from, to);
+        expect(randomValue).toBe(from);  // Since the range is [0, 1), the only possible value is 0
+    });
 
     test('should generate different values on multiple calls', () => {
         const results = new Set();

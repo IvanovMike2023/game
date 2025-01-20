@@ -1,4 +1,5 @@
 import {GameStatuses} from "./GAME_STATUSES.js";
+import {SamuraiNumberUtility} from "./samurai-number-utility.js";
 
 export class Game {
     #settings = {
@@ -8,26 +9,52 @@ export class Game {
         }
     }
     #gameStatus = GameStatuses.PENDING
-    #googlePosition = {
-        x:0,y:0
+    #googlePosition = null
+    /**
+     * @type SamuraiNumberUtility
+     */
+
+    #numberUtility
+
+    constructor() {
+        this.#numberUtility = new SamuraiNumberUtility
     }
+
     set status(status) {
         this.#gameStatus = status
     }
+
     get status() {
         return this.#gameStatus
     }
+
     get gridSize() {
         return this.#settings.gridSize
     }
+
     get googlePosition() {
         return this.#googlePosition
     }
+
     start() {
-        this.#googlePosition={
-            x:0,y:0
-        }
+        this.#jumpGoogle()
         this.#gameStatus = GameStatuses.IN_PROGRESS
+        setInterval(() => {
+            this.#jumpGoogle()
+        }, 1000)
+
+    }
+
+    #jumpGoogle() {
+        const newPosition = {
+            x: this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount),
+            y: this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount)
+        }
+        if (newPosition.x === this.googlePosition?.x && newPosition.y === this.googlePosition?.y) {
+            this.#jumpGoogle()
+            return
+        }
+        this.#googlePosition=newPosition
     }
 
     win() {
