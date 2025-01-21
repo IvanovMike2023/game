@@ -45,8 +45,8 @@ describe('game', () => {
 });
 // const delay=(ms)=>{
 //     return new Promise(res=>{
-//         res()
-//     },ms)
+//         setTimeout(()=>res(),ms)
+//     })
 // }
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms))
