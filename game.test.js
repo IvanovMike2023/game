@@ -30,14 +30,17 @@ describe('game', () => {
         expect(game.googlePosition.y).toBeLessThan(game.gridSize.rowsCount)
         expect(game.googlePosition.y).toBeGreaterThanOrEqual(0)
     })
-    it('Google should be in the Grid but in new position after jump',async () => {
+    it('Google should be in the Grid but in new position after jump', async () => {
         const game = new Game()
-      //  debugger
+        //  debugger
+        game.jumpGoogleInterval = 1
         game.start()
-        const prevgooglePosition=game.googlePosition
-        await delay(1010)
-        const currentgooglePosition = game.googlePosition
-         expect(prevgooglePosition).not.toBe(currentgooglePosition)
+        for (let i = 0; i < 100; i++) {
+            const prevgooglePosition = game.googlePosition
+            await delay(1)
+            const currentgooglePosition = game.googlePosition
+            expect(prevgooglePosition).not.toBe(currentgooglePosition)
+        }
     })
 });
 // const delay=(ms)=>{
@@ -46,5 +49,5 @@ describe('game', () => {
 //     },ms)
 // }
 
-const delay =(ms)=> new Promise(res=>setTimeout(res,ms))
+const delay = (ms) => new Promise(res => setTimeout(res, ms))
 //cscs

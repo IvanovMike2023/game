@@ -6,7 +6,8 @@ export class Game {
         gridSize: {
             columnsCount: 4,
             rowsCount: 4
-        }
+        },
+        jumpGoogleInterval:0
     }
     #gameStatus = GameStatuses.PENDING
     #googlePosition = null
@@ -20,6 +21,12 @@ export class Game {
         this.#numberUtility = new SamuraiNumberUtility
     }
 
+    set jumpGoogleInterval(value) {
+        if(!Number.isInteger(value) || value<0){
+            throw new Error('Parameter is not a number!');
+        }
+        this.#settings.jumpGoogleInterval=value
+    }
     set status(status) {
         this.#gameStatus = status
     }
@@ -41,7 +48,7 @@ export class Game {
         this.#gameStatus = GameStatuses.IN_PROGRESS
         setInterval(() => {
             this.#jumpGoogle()
-        }, 1000)
+        }, this.#settings.jumpGoogleInterval)
 
     }
 
@@ -52,7 +59,7 @@ export class Game {
         }
         if (newPosition.x === this.googlePosition?.x && newPosition.y === this.googlePosition?.y) {
             this.#jumpGoogle()
-            return
+                return
         }
         this.#googlePosition=newPosition
     }
