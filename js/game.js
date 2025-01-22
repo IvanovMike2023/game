@@ -7,7 +7,7 @@ export class Game {
             columnsCount: 4,
             rowsCount: 4
         },
-        jumpGoogleInterval:0
+        jumpGoogleInterval: 0
     }
     #gameStatus = GameStatuses.PENDING
     #googlePosition = null
@@ -16,17 +16,22 @@ export class Game {
      */
 
     #numberUtility
+    #player1
+    #player2
 
     constructor() {
         this.#numberUtility = new SamuraiNumberUtility
+        this.#player1 = new Player(this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount),this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount))
+        this.#player2 = new Player(this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount), this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount))
     }
 
     set jumpGoogleInterval(value) {
-        if(!Number.isInteger(value) || value<0){
+        if (!Number.isInteger(value) || value < 0) {
             throw new Error('Parameter is not a number!');
         }
-        this.#settings.jumpGoogleInterval=value
+        this.#settings.jumpGoogleInterval = value
     }
+
     set status(status) {
         this.#gameStatus = status
     }
@@ -59,9 +64,9 @@ export class Game {
         }
         if (newPosition.x === this.googlePosition?.x && newPosition.y === this.googlePosition?.y) {
             this.#jumpGoogle()
-                return
+            return
         }
-        this.#googlePosition=newPosition
+        this.#googlePosition = newPosition
     }
 
     win() {
