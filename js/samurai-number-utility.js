@@ -6,3 +6,6 @@ export class SamuraiNumberUtility {
         return Math.floor(Math.random() * (toExclusive - fromInclusive)) + fromInclusive;
     }
 }
+Object.prototype.equals = function equals(obj) {
+    return JSON.stringify(this) === JSON.stringify(obj)
+};

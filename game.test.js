@@ -50,10 +50,10 @@ describe('game', () => {
         game.jumpGoogleInterval = 1
         game.start()
         const prevgoog = game.player1Position
-        console.log(prevgoog)
-        // const e={x:1,y:2}
-        // console.log(e.equals({x:1,y:2}))
-        expect(prevgoog).toBe(game.player1Position)
+        const prevgoog2 = game.player2Position
+        var isEqual = JSON.stringify(prevgoog) === JSON.stringify(prevgoog2)
+
+        expect(isEqual).toBe(false)
 
     })
 });
