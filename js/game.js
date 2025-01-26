@@ -1,6 +1,7 @@
 import {GameStatuses} from "./GAME_STATUSES.js";
 import {SamuraiNumberUtility} from "./samurai-number-utility.js";
 import {Position} from "./Position.js";
+import {GoogleManager} from "./GoogleManager.js";
 
 export class Game {
     #settings = {
@@ -22,6 +23,7 @@ export class Game {
 
     constructor() {
         this.#numberUtility = new SamuraiNumberUtility
+        //this.googleSettings = new GoogleManager(this.#numberUtility)
     }
 
     set jumpGoogleInterval(value) {
