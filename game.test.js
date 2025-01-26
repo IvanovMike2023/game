@@ -32,15 +32,29 @@ describe('game', () => {
     })
     it('Google should be in the Grid but in new position after jump', async () => {
         const game = new Game()
-        //  debugger
         game.jumpGoogleInterval = 1
         game.start()
+        debugger
+       //game.player1Position()
         for (let i = 0; i < 100; i++) {
             const prevgooglePosition = game.googlePosition
+
             await delay(1)
             const currentgooglePosition = game.googlePosition
             expect(prevgooglePosition).not.toBe(currentgooglePosition)
         }
+    })
+
+    it('player1Position', () => {
+        const game = new Game()
+        game.jumpGoogleInterval = 1
+        game.start()
+        const prevgoog = game.player1Position
+        console.log(prevgoog)
+        // const e={x:1,y:2}
+        // console.log(e.equals({x:1,y:2}))
+        expect(prevgoog).toBe(game.player1Position)
+
     })
 });
 // const delay=(ms)=>{
