@@ -1,24 +1,29 @@
 import {Position} from "./Position.js";
 import {SamuraiNumberUtility} from "./samurai-number-utility.js";
+import {Settings} from "./Setting.js";
 
-export  class GoogleManager {
-    constructor(numberUtility) {
-        this.position=new Position(0,0)
-        this.numberUtility= numberUtility
+export class GoogleManager {
+    constructor(numberUtility,gridSize,googlePosition) {
+        this.position = googlePosition//new Position(0, 0)
+        this.numberUtility = numberUtility
+        this.gridSize = gridSize
     }
-    #jumpGoogle() {
+
+
+    jumpGoogle(player1Position,player2Position) {
         const newPosition = new Position(
-            this.numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount),
-            this.numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount)
+            this.numberUtility.getRandomInteger(0, this.gridSize.columnsCount),
+            this.numberUtility.getRandomInteger(0, this.gridSize.rowsCount)
         )
         if (
-            newPosition.equals(this.googlePosition) ||
-            newPosition.equals(this.player1Position) ||
-            newPosition.equals(this.player2Position)
+            newPosition.equals(this.position) ||
+            newPosition.equals(player1Position) ||
+            newPosition.equals(player2Position)
         ) {
-            this.#jumpGoogle()
+            this.jumpGoogle()
             return
         }
-        this.#googlePosition = newPosition
+        this.position = newPosition
     }
+
 }

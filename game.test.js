@@ -25,6 +25,7 @@ describe('game', () => {
     it('Position Google should be in the Grid after start', () => {
         const game = new Game()
         game.start()
+        // console.log(game.player1Position)
         expect(game.googlePosition.x).toBeLessThan(game.gridSize.columnsCount)
         expect(game.googlePosition.x).toBeGreaterThanOrEqual(0)
         expect(game.googlePosition.y).toBeLessThan(game.gridSize.rowsCount)
@@ -34,8 +35,7 @@ describe('game', () => {
         const game = new Game()
         game.jumpGoogleInterval = 1
         game.start()
-        debugger
-       //game.player1Position()
+        //game.player1Position()
         for (let i = 0; i < 100; i++) {
             const prevgooglePosition = game.googlePosition
 
@@ -45,7 +45,7 @@ describe('game', () => {
         }
     })
 
-    it('player1Position', () => {
+    it('player2Position', () => {
         const game = new Game()
         game.jumpGoogleInterval = 1
         game.start()
