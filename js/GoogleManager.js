@@ -2,6 +2,7 @@ import {Position} from "./Position.js";
 import {SamuraiNumberUtility} from "./samurai-number-utility.js";
 import {Settings} from "./Setting.js";
 
+
 export class GoogleManager {
     constructor(numberUtility,gridSize,googlePosition) {
         this.position = googlePosition//new Position(0, 0)
