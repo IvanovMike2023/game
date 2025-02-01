@@ -10,8 +10,7 @@ export class Position {
     // }
     // get y(){
     //     return this.#y
-    // }
-
+    // }вмыы
     equals(position)   {
         return this.x===position?.x && this.y===position?.y
     }
