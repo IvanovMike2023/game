@@ -51,17 +51,9 @@ describe('game', () => {
         game.start()
         const prevgoog = game.player1Position
         const prevgoog2 = game.player2Position
-        var isEqual = JSON.stringify(prevgoog) === JSON.stringify(prevgoog2)
-
-        expect(isEqual).toBe(false)
+        expect(prevgoog.equals(prevgoog2)).toBe(false)
 
     })
 });
-// const delay=(ms)=>{
-//     return new Promise(res=>{
-//         setTimeout(()=>res(),ms)
-//     })
-// }
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms))
-//cscs
