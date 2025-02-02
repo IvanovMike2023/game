@@ -54,6 +54,13 @@ describe('game', () => {
         expect(prevgoog.equals(prevgoog2)).toBe(false)
 
     })
+    it('player1Position should move in correct directions', () => {
+        const game = new Game()
+        game.start()
+
+        expect(game.player1Position).toEqual({x:-1,y:-1})
+
+    })
 });
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms))

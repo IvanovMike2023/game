@@ -90,8 +90,3 @@ export class Game {
     }
 }
 
-// const game = new Game()
-// console.log(game.status)
-// module.exports = {
-//     Game,
-// }
