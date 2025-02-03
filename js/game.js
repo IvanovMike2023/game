@@ -2,6 +2,7 @@ import {GameStatuses} from "./GAME_STATUSES.js";
 import {SamuraiNumberUtility} from "./samurai-number-utility.js";
 import {Position} from "./Position.js";
 import {GoogleManager} from "./GoogleManager.js";
+import {MoveDirections} from "./move-directions.js";
 
 export class Game {
     #settings = {
@@ -15,6 +16,10 @@ export class Game {
     #googlePosition
     #player1Position
     #player2Position
+    // #playerPositions = {
+    //     '1': null,
+    //     '2': null
+    // }
     /**
      * @type SamuraiNumberUtility
      */
@@ -23,7 +28,7 @@ export class Game {
 
     constructor() {
         this.#numberUtility = new SamuraiNumberUtility()
-        this.GoogleManager = new GoogleManager(this.#numberUtility, this.#settings.gridSize, this.#googlePosition)
+      this.GoogleManager = new GoogleManager(this.#numberUtility, this.#settings.gridSize, this.#googlePosition)
     }
 
     set jumpGoogleInterval(value) {
@@ -78,6 +83,7 @@ export class Game {
             this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount),
             this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount)
         )
+       // this.#playerPositions['1'] = this.#player1Position
     }
 
     #player2StartPosition() {
@@ -88,6 +94,16 @@ export class Game {
                 this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount))
         } while (position.equals(this.#player1Position))
         this.#player2Position = position
+       // this.#playerPositions['2'] = position
     }
+
+    movePlayer(playerNumber, moveDirection) {
+        switch (moveDirection) {
+            case MoveDirections.UP:
+                this.#player1Position= new Position(this.#numberUtility.getRandomInteger(),  2)//new Position(this.player1Position.x,this.player1Position.y=this.player1Position.y-1)
+
+        }
+    }
+
 }
 

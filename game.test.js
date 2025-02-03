@@ -1,4 +1,6 @@
 import {Game} from "./js/game.js";
+import {MoveDirections} from "./js/move-directions.js";
+import {SamuraiNumberUtility} from "./js/samurai-number-utility.js";
 
 describe('game', () => {
 
@@ -46,7 +48,8 @@ describe('game', () => {
     })
 
     it('player2Position', () => {
-        const game = new Game()
+        const numberUtility = new SamuraiNumberUtility
+        const game = new Game(numberUtility)
         game.jumpGoogleInterval = 1
         game.start()
         const prevgoog = game.player1Position
@@ -55,14 +58,31 @@ describe('game', () => {
 
     })
     it('player1Position should move in correct directions', () => {
-        const game = new Game()
+
+        const numberUtilityMock = {
+            _count:0,
+            returnValues: [2, 2, 3, 0],
+            getRandomInteger() {
+                const returnValue=this.returnValues[this._count]
+                if(returnValue===undefined){
+                  throw new Error('23232')
+                }
+                this._count++
+                return returnValue
+
+            }
+        }
+        const game = new Game(numberUtilityMock)
         game.start()
+//[][][][]
+//[][][][]
+//[][][][]
+//[][][][x]
+       game.movePlayer(1,MoveDirections.UP)
+       const nee= game.player1Position
+        expect(game.player1Position).toEqual({x: 3, y: 2})
+        //expect(game.player1Position.x).toBeLessThan(4)
 
-        expect(game.player1Position.x).toBeGreaterThanOrEqual(0)
-        expect(game.player1Position.x).toBeLessThan(4)
-
-        expect(game.player1Position.y).toBeGreaterThanOrEqual(0)
-        expect(game.player1Position.y).toBeLessThan(4)
 
     })
 });
