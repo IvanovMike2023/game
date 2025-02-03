@@ -12,8 +12,8 @@ export class Game {
         jumpGoogleInterval: 0
     }
     #gameStatus = GameStatuses.PENDING
-    #googlePosition = null
-    #player1Position = null
+    #googlePosition
+    #player1Position
     #player2Position
     /**
      * @type SamuraiNumberUtility
@@ -23,7 +23,7 @@ export class Game {
 
     constructor() {
         this.#numberUtility = new SamuraiNumberUtility()
-        this.GoogleManager = new GoogleManager(this.#numberUtility,this.#settings.gridSize,this.#googlePosition)
+        this.GoogleManager = new GoogleManager(this.#numberUtility, this.#settings.gridSize, this.#googlePosition)
     }
 
     set jumpGoogleInterval(value) {
@@ -58,12 +58,12 @@ export class Game {
     }
 
     start() {
-        this.GoogleManager.jumpGoogle(this.player1Position,this.player2Position)
+        this.GoogleManager.jumpGoogle(this.player1Position, this.player2Position)
         this.#player1StartPosition()
         this.#player2StartPosition()
         this.#gameStatus = GameStatuses.IN_PROGRESS
         setInterval(() => {
-            this.GoogleManager.jumpGoogle(this.player1Position,this.player2Position)
+            this.GoogleManager.jumpGoogle(this.player1Position, this.player2Position)
         }, this.#settings.jumpGoogleInterval)
 
     }
@@ -83,7 +83,8 @@ export class Game {
     #player2StartPosition() {
         let position
         do {
-            position = new Position(this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount),
+            position = new Position(
+                this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount),
                 this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount))
         } while (position.equals(this.#player1Position))
         this.#player2Position = position

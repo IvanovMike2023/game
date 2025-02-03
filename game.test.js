@@ -58,7 +58,11 @@ describe('game', () => {
         const game = new Game()
         game.start()
 
-        expect(game.player1Position).toEqual({x:-1,y:-1})
+        expect(game.player1Position.x).toBeGreaterThanOrEqual(0)
+        expect(game.player1Position.x).toBeLessThan(4)
+
+        expect(game.player1Position.y).toBeGreaterThanOrEqual(0)
+        expect(game.player1Position.y).toBeLessThan(4)
 
     })
 });
