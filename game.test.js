@@ -67,6 +67,7 @@ describe('game', () => {
                 if(returnValue===undefined){
                   throw new Error('23232')
                 }
+
                 this._count++
                 return returnValue
 
