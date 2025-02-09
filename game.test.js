@@ -79,7 +79,9 @@ describe('game', () => {
 //???
 //[][][][]
 //[][][][]
-//[][][][]
+//[][][][]\
+
+
 //[][][][x]
        game.movePlayer(1,MoveDirections.UP)
        const nee= game.player1Position
