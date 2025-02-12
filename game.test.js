@@ -5,27 +5,32 @@ import {SamuraiNumberUtility} from "./js/samurai-number-utility.js";
 describe('game', () => {
 
     it('get status', () => {
-        const game = new Game()
+        const numberUtility = new SamuraiNumberUtility
+        const game = new Game(numberUtility)
         expect(game.status).toBe('pending')
     })
     it('set status', () => {
-        const game = new Game()
+        const numberUtility = new SamuraiNumberUtility
+        const game = new Game(numberUtility)
         game.status = 'in_progress'
         expect(game.status).toBe('in_progress')
     })
     it('should have InProgress status after start', () => {
-        const game = new Game()
+        const numberUtility = new SamuraiNumberUtility
+        const game = new Game(numberUtility)
         game.start()
         expect(game.status).toBe('in_progress')
     })
     it('should have Win status after start', () => {
-        const game = new Game()
+        const numberUtility = new SamuraiNumberUtility
+        const game = new Game(numberUtility)
         game.start()
         game.win()
         expect(game.status).toBe('win')
     })
     it('Position Google should be in the Grid after start', () => {
-        const game = new Game()
+        const numberUtility = new SamuraiNumberUtility
+        const game = new Game(numberUtility)
         game.start()
         // console.log(game.player1Position)
         expect(game.googlePosition.x).toBeLessThan(game.gridSize.columnsCount)
@@ -34,7 +39,8 @@ describe('game', () => {
         expect(game.googlePosition.y).toBeGreaterThanOrEqual(0)
     })
     it('Google should be in the Grid but in new position after jump', async () => {
-        const game = new Game()
+        const numberUtility = new SamuraiNumberUtility
+        const game = new Game(numberUtility)
         game.jumpGoogleInterval = 1
         game.start()
         //game.player1Position()
@@ -61,32 +67,37 @@ describe('game', () => {
 
         const numberUtilityMock = {
             _count:0,
-            returnValues: [2, 2, 3, 0],
+            returnValues: [3, 3, 3, 2,2,2,3,2],
             getRandomInteger() {
                 const returnValue=this.returnValues[this._count]
                 if(returnValue===undefined){
                   throw new Error('23232')
                 }
-
                 this._count++
                 return returnValue
-
             }
         }
         const game = new Game(numberUtilityMock)
         game.start()
-//???
-//[][][][]дшшдг
 //[][][][]
-//[][][][]\
-
-
+//[][][][]
 //[][][][x]
-       game.movePlayer(1,MoveDirections.UP)
-       const nee= game.player1Position
-        expect(game.player1Position).toEqual({x: 3, y: 2})
-        //expect(game.player1Position.x).toBeLessThan(4)
+//[][][][]
+      game.movePlayer(1,MoveDirections.UP)
+       expect(game.player1Position).toEqual({x: 3, y: 2})
 
+//[][][][]
+//[][][][]
+//[][][x][]
+//[][][][]
+       game.movePlayer(1,MoveDirections.LEFT)
+        expect(game.player1Position).toEqual({x: 2, y: 2})
+//[][][][]
+//[][][][]
+//[][][][x]
+//[][][][]
+       game.movePlayer(1,MoveDirections.RIGHT)
+        expect(game.player1Position).toEqual({x: 3, y: 2})
 
     })
 });

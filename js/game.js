@@ -25,8 +25,9 @@ export class Game {
      */
 
     #numberUtility
-
-    constructor() {
+    #numberUtilitytest
+    constructor(numberUtilityMock) {
+        this.#numberUtilitytest = numberUtilityMock
         this.#numberUtility = new SamuraiNumberUtility()
       this.GoogleManager = new GoogleManager(this.#numberUtility, this.#settings.gridSize, this.#googlePosition)
     }
@@ -100,7 +101,11 @@ export class Game {
     movePlayer(playerNumber, moveDirection) {
         switch (moveDirection) {
             case MoveDirections.UP:
-                this.#player1Position= new Position(this.#numberUtility.getRandomInteger(),  2)//new Position(this.player1Position.x,this.player1Position.y=this.player1Position.y-1)
+             return    this.#player1Position= new Position(this.#player1Position.x=this.#numberUtilitytest.getRandomInteger(),this.player1Position.y = this.#numberUtilitytest.getRandomInteger()-1)
+            case MoveDirections.LEFT:
+              return   this.#player1Position= new Position(this.#player1Position.x=this.#numberUtilitytest.getRandomInteger()-1,this.player1Position.y = this.#numberUtilitytest.getRandomInteger())
+            case MoveDirections.RIGHT:
+              return   this.#player1Position= new Position(this.#player1Position.x=this.#numberUtilitytest.getRandomInteger()+1,this.player1Position.y = this.#numberUtilitytest.getRandomInteger())
 
         }
     }
