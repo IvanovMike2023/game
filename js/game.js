@@ -16,10 +16,10 @@ export class Game {
     #googlePosition
     #player1Position
     #player2Position
-    // #playerPositions = {
-    //     '1': null,
-    //     '2': null
-    // }
+    #playerPositions = {
+        '1': null,
+        '2': null
+    }
     /**
      * @type SamuraiNumberUtility
      */
@@ -27,8 +27,9 @@ export class Game {
     #numberUtility
     #numberUtilitytest
     constructor(numberUtilityMock) {
-        this.#numberUtilitytest = numberUtilityMock
-        this.#numberUtility = new SamuraiNumberUtility()
+        //this.#numberUtilitytest = numberUtilityMock
+        this.#numberUtility = numberUtilityMock
+      //  this.#numberUtility = new SamuraiNumberUtility()
       this.GoogleManager = new GoogleManager(this.#numberUtility, this.#settings.gridSize, this.#googlePosition)
     }
 
@@ -56,11 +57,11 @@ export class Game {
     }
 
     get player1Position() {
-        return this.#player1Position
+        return this.#playerPositions['1']
     }
 
     get player2Position() {
-        return this.#player2Position
+        return this.#playerPositions['2']
     }
 
     start() {
@@ -80,7 +81,7 @@ export class Game {
 
 
     #player1StartPosition() {
-        this.#player1Position = new Position(
+        this.#playerPositions['1'] = new Position(
             this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount),
             this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount)
         )
@@ -93,21 +94,27 @@ export class Game {
             position = new Position(
                 this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.rowsCount),
                 this.#numberUtility.getRandomInteger(0, this.#settings.gridSize.columnsCount))
-        } while (position.equals(this.#player1Position))
+        } while (position.equals(this.#playerPositions['1']))
         this.#player2Position = position
        // this.#playerPositions['2'] = position
     }
 
     movePlayer(playerNumber, moveDirection) {
+        const newPosition = {...this.#playerPositions['1']}
         switch (moveDirection) {
             case MoveDirections.UP:
-             return    this.#player1Position= new Position(this.#player1Position.x=this.#numberUtilitytest.getRandomInteger(),this.player1Position.y = this.#numberUtilitytest.getRandomInteger()-1)
+                newPosition.y--
+                break
             case MoveDirections.LEFT:
-              return   this.#player1Position= new Position(this.#player1Position.x=this.#numberUtilitytest.getRandomInteger()-1,this.player1Position.y = this.#numberUtilitytest.getRandomInteger())
-            case MoveDirections.RIGHT:
-              return   this.#player1Position= new Position(this.#player1Position.x=this.#numberUtilitytest.getRandomInteger()+1,this.player1Position.y = this.#numberUtilitytest.getRandomInteger())
+                newPosition.x= this.#numberUtilitytest.getRandomInteger()-1
+                break
+          //   case MoveDirections.RIGHT:
+          //     return   this.#player1Position= new Position(this.#player1Position.x=this.#numberUtilitytest.getRandomInteger()+1,this.player1Position.y = this.#numberUtilitytest.getRandomInteger())
+          // case MoveDirections.DOWN:
+          //     return   this.#player1Position= new Position(this.#player1Position.x=this.#numberUtilitytest.getRandomInteger(),this.player1Position.y = this.#numberUtilitytest.getRandomInteger()+1)
 
         }
+        this.#playerPositions['1']=newPosition
     }
 
 }
