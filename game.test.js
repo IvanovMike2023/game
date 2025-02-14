@@ -63,6 +63,7 @@ describe('game', () => {
         expect(prevgoog.equals(prevgoog2)).toBe(false)
 
     })
+
     it('player1Position should move in correct directions', () => {
 
         const numberUtilityMock = {

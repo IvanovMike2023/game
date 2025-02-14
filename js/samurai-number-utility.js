@@ -5,7 +5,6 @@ export class SamuraiNumberUtility {
         }
         return Math.floor(Math.random() * (toExclusive - fromInclusive)) + fromInclusive;
     }
-
 }
 
 // Object.prototype.equals = function equals(obcj) {
