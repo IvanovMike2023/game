@@ -116,7 +116,7 @@ export class Game {
         }
         const isInsideGrid =newPosition.x > 0 && newPosition.x < this.#settings.gridSize.rowsCount &&
             newPosition.y > 0 && newPosition.y < this.#settings.gridSize.columnsCount
-        const isCellFreeOtherPlayer = this.#playerPositions[playerNumber]//newPosition.x!=this.#playerPositions[playerNumber] && newPosition.y!=this.#playerPositions[!playerNumber]
+        const isCellFreeOtherPlayer = newPosition.x!=this.#playerPositions[playerNumber] && newPosition.y!=this.#playerPositions[!playerNumber]
         if(!isCellFreeOtherPlayer){
             return;
         }
