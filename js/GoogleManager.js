@@ -4,9 +4,9 @@ import {Settings} from "./Setting.js";
 
 
 export class GoogleManager {
-    constructor(numberUtility,gridSize,googlePosition) {
+    constructor(gridSize,googlePosition) {
         this.position = googlePosition//new Position(0, 0)
-        this.numberUtility = numberUtility
+        this.numberUtility = new SamuraiNumberUtility()
         this.gridSize = gridSize
     }
 

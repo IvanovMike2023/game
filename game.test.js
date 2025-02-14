@@ -66,9 +66,8 @@ describe('game', () => {
     it('player1Position should move in correct directions', () => {
 
         const numberUtilityMock = {
-            _count: 0,
-            returnValues: [2, 1, 2, 3, 2, 2, 2, 2, 3],//ктото берет первые значения
-            //3, 2, 2, 2, 2, 3],
+            _count: 0, returnValues: [3, 3, 2, 2],
+
             getRandomInteger() {
                 const returnValue = this.returnValues[this._count]
                 if (returnValue === undefined) {
@@ -80,31 +79,37 @@ describe('game', () => {
         }
         const game = new Game(numberUtilityMock)
         game.start()
+        //[][][][]
+        //[][][][]
+        //[][][][]
+        //[][][][x]
+
 //[][][][]
 //[][][][]
 //[][][][x]
 //[][][][]
         game.movePlayer(1, MoveDirections.UP)
         expect(game.player1Position.y).toEqual(2)
-
+        // game.movePlayer(2, MoveDirections.UP)
+        // expect(game.player2Position.y).toEqual(1)
 //[][][][]
 //[][][][]
 //[][][x][]
 //[][][][]
-     //  game.movePlayer(1, MoveDirections.LEFT)
-      // expect(game.player1Position.x).toEqual( 2)
+        game.movePlayer(1, MoveDirections.LEFT)
+        expect(game.player1Position.x).toEqual(2)
 //[][][][]
 //[][][][]
 //[][][][x]
 //[][][][]
-//         game.movePlayer(1, MoveDirections.RIGHT)
-//         expect(game.player1Position).toEqual({x: 3, y: 2})
+        game.movePlayer(1, MoveDirections.RIGHT)
+        expect(game.player1Position.x).toEqual(3)
 //[][][][]
 //[][][][]
 //[][][][]
 //[][][][x]
-//         game.movePlayer(1, MoveDirections.RIGHT)
-//         expect(game.player1Position).toEqual({x: 3, y: 3})
+        game.movePlayer(1, MoveDirections.DOWN)
+        expect(game.player1Position.y).toEqual(3)
 
     })
 });
