@@ -4,7 +4,4 @@ export const MoveDirections={
     RIGHT:'RIGHT',
     LEFT:'LEFT',
     DOWN:'DOWN'
-
-
-
 }
