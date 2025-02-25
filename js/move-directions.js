@@ -5,7 +5,4 @@ export const MoveDirections={
     DOWN:'DOWN'
 
 
-
-
-
 }
