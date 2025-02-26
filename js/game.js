@@ -1,5 +1,5 @@
 import {GameStatuses} from "./GAME_STATUSES.js";
-import {SamuraiNumberUtility} from "./samurai-number-utility.js";
+ import {SamuraiNumberUtility} from "./samurai-number-utility.js";
 import {Position} from "./Position.js";
 import {GoogleManager} from "./GoogleManager.js";
 import {MoveDirections} from "./move-directions.js";

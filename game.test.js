@@ -67,7 +67,7 @@ describe('game', () => {
     it('player1Position should move in correct directions', () => {
 
         const numberUtilityMock = {
-            _count: 0, returnValues: [3, 3, 2, 2],
+            _count: 0, returnValues: [3, 3, 2, 3],
 
             getRandomInteger() {
                 const returnValue = this.returnValues[this._count]
