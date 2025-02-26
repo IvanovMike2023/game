@@ -26,5 +26,4 @@ export class GoogleManager {
         }
         this.position = newPosition
     }
-
 }

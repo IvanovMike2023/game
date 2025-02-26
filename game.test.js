@@ -91,8 +91,8 @@ describe('game', () => {
 //[][][][]
         game.movePlayer(1, MoveDirections.UP)
         expect(game.player1Position.y).toEqual(2)
-        // game.movePlayer(2, MoveDirections.UP)
-        // expect(game.player2Position.y).toEqual(1)
+
+
 //[][][][]
 //[][][][]
 //[][][x][]
@@ -111,6 +111,18 @@ describe('game', () => {
 //[][][][x]
         game.movePlayer(1, MoveDirections.DOWN)
         expect(game.player1Position.y).toEqual(3)
+
+        game.movePlayer(2, MoveDirections.UP)
+        expect(game.player2Position.y).toEqual(2)
+
+        game.movePlayer(2, MoveDirections.DOWN)
+        expect(game.player2Position.y).toEqual(3)
+
+        game.movePlayer(2, MoveDirections.LEFT)
+        expect(game.player2Position.x).toEqual(1)
+
+        game.movePlayer(2, MoveDirections.RIGHT)
+        expect(game.player2Position.x).toEqual(2)
 
     })
 });

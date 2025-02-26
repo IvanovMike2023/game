@@ -20,6 +20,10 @@ export class Game {
         '1': null,
         '2': null
     }
+    #scope = {
+        '1': null,
+        '2': null
+    }
     /**
      * @type SamuraiNumberUtility
      */
@@ -41,6 +45,9 @@ export class Game {
     set status(status) {
         this.#gameStatus = status
     }
+    set scope(playernumber) {
+        this.#scope[playernumber] += 1
+    }
 
     get status() {
         return this.#gameStatus
@@ -56,6 +63,10 @@ export class Game {
 
     get player1Position() {
         return this.#playerPositions['1']
+    }
+
+    get scope() {
+        return this.#scope
     }
 
     get player2Position() {
@@ -116,7 +127,14 @@ export class Game {
         }
         const isInsideGrid =newPosition.x > 0 && newPosition.x < this.#settings.gridSize.rowsCount &&
             newPosition.y > 0 && newPosition.y < this.#settings.gridSize.columnsCount
-        const isCellFreeOtherPlayer = newPosition.x!=this.#playerPositions[playerNumber] && newPosition.y!=this.#playerPositions[!playerNumber]
+        let playerNumberOther
+        playerNumber=='1' ?   playerNumberOther = '2':  playerNumberOther = '1'
+         const isCellFreeOtherPlayer = newPosition.x!=this.#playerPositions[playerNumberOther].x || newPosition.y!=this.#playerPositions[playerNumberOther].y
+        const isCellgooglePosition=newPosition.x===this.googlePosition.x && newPosition.y===this.googlePosition.y
+
+        if(isCellgooglePosition){
+            this.#scope[playerNumber]=+1
+        }
         if(!isCellFreeOtherPlayer){
             return;
         }
